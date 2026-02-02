@@ -1,9 +1,10 @@
 """Configuration management using Pydantic Settings"""
 
-from pydantic_settings import BaseSettings, SettingsConfigDict
-from typing import List
-from functools import lru_cache
 import os
+from functools import lru_cache
+from typing import List
+
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
@@ -12,6 +13,7 @@ class Settings(BaseSettings):
     # Application
     APP_NAME: str = "banking-llm"
     APP_ENV: str = "development"
+    ENVIRONMENT: str = "development"  # Alias
     DEBUG: bool = True
     LOG_LEVEL: str = "INFO"
     
@@ -21,15 +23,29 @@ class Settings(BaseSettings):
     API_WORKERS: int = 4
     API_RELOAD: bool = True
     
-    # Database
+    # Database (Supabase PostgreSQL)
     DATABASE_URL: str = "postgresql://user:password@localhost:5432/banking_llm"
     DATABASE_POOL_SIZE: int = 20
     DATABASE_MAX_OVERFLOW: int = 0
+    
+    # Supabase
+    SUPABASE_URL: str = ""  # https://your-project.supabase.co  
+    SUPABASE_KEY: str = ""  # Your anon/public key
+    SUPABASE_SERVICE_KEY: str = ""  # Service role key (admin access)
+    SUPABASE_ACCESS_TOKEN: str = ""  # Personal Access Token for Management API
+    SUPABASE_DB_PASSWORD: str = ""  # Direct database password
     
     # Redis
     REDIS_URL: str = "redis://localhost:6379/0"
     REDIS_PASSWORD: str = ""
     CACHE_TTL: int = 3600
+    
+    # Pinecone Vector Database
+    PINECONE_API_KEY: str = ""
+    PINECONE_ENVIRONMENT: str = "us-east-1-aws"
+    PINECONE_INDEX_NAME: str = "banking-chat-embeddings"
+    EMBEDDING_MODEL: str = "all-MiniLM-L6-v2"
+    EMBEDDING_DIMENSION: int = 384
     
     # Ollama (Local)
     OLLAMA_BASE_URL: str = "http://localhost:11434"
@@ -39,6 +55,13 @@ class Settings(BaseSettings):
     # Together.ai (Cloud)
     TOGETHER_API_KEY: str = ""
     TOGETHER_MODEL: str = "meta-llama/Llama-2-34b-chat-hf"
+    
+    # OpenAI (Alternative)
+    OPENAI_API_KEY: str = ""
+    OPENAI_MODEL: str = "gpt-4"
+    
+    # LLM Provider Selection
+    LLM_PROVIDER: str = "ollama"  # Options: ollama, together, openai
     
     # RunPod (Training)
     RUNPOD_API_KEY: str = ""
@@ -57,10 +80,10 @@ class Settings(BaseSettings):
     JWT_EXPIRATION: int = 3600
     ENCRYPTION_KEY: str = "your_encryption_key_32_bytes_here"
     
-    # CORS
-    CORS_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:8000"]
+    # CORS - Allow all origins for development (including Codespaces)
+    CORS_ORIGINS: List[str] = ["*"]
     CORS_CREDENTIALS: bool = True
-    ALLOWED_HOSTS: List[str] = ["localhost", "127.0.0.1"]
+    ALLOWED_HOSTS: List[str] = ["*"]
     
     # Rate Limiting
     RATE_LIMIT_PER_MINUTE: int = 60
@@ -72,6 +95,8 @@ class Settings(BaseSettings):
     PII_MASK_CHAR: str = "*"
     
     # Monitoring
+    ENABLE_MONITORING: bool = True
+    ENABLE_TRACING: bool = True
     PROMETHEUS_ENABLED: bool = True
     PROMETHEUS_PORT: int = 9090
     JAEGER_ENABLED: bool = True
@@ -106,3 +131,7 @@ class Settings(BaseSettings):
 def get_settings() -> Settings:
     """Get cached settings instance"""
     return Settings()
+
+
+# Global settings instance
+settings = get_settings()

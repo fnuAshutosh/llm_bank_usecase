@@ -1,0 +1,9 @@
+{
+  "dataset": "Banking77",
+  "source": "https://huggingface.co/datasets/banking77",
+  "train_size": 10003,
+  "val_size": 1540,
+  "test_size": 1540,
+  "total_intents": 77,
+  "format": "Llama 2 instruction format"
+}

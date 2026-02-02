@@ -1,0 +1,72 @@
+[
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a professional banking assistant. Provide accurate, helpful, and compliant responses to customer inquiries.\n<</SYS>>\n\nI am still waiting on my card? [/INST] New cards typically arrive within 7-10 business days. I can check the delivery status for you. </s>",
+    "input": "I am still waiting on my card?",
+    "output": "New cards typically arrive within 7-10 business days. I can check the delivery status for you.",
+    "intent": "card_arrival",
+    "label": 11
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a professional banking assistant. Provide accurate, helpful, and compliant responses to customer inquiries.\n<</SYS>>\n\nWhat can I do if my card still hasn't arrived after 2 weeks? [/INST] New cards typically arrive within 7-10 business days. I can check the delivery status for you. </s>",
+    "input": "What can I do if my card still hasn't arrived after 2 weeks?",
+    "output": "New cards typically arrive within 7-10 business days. I can check the delivery status for you.",
+    "intent": "card_arrival",
+    "label": 11
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a professional banking assistant. Provide accurate, helpful, and compliant responses to customer inquiries.\n<</SYS>>\n\nI have been waiting over a week. Is the card still coming? [/INST] New cards typically arrive within 7-10 business days. I can check the delivery status for you. </s>",
+    "input": "I have been waiting over a week. Is the card still coming?",
+    "output": "New cards typically arrive within 7-10 business days. I can check the delivery status for you.",
+    "intent": "card_arrival",
+    "label": 11
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a professional banking assistant. Provide accurate, helpful, and compliant responses to customer inquiries.\n<</SYS>>\n\nCan I track my card while it is in the process of delivery? [/INST] New cards typically arrive within 7-10 business days. I can check the delivery status for you. </s>",
+    "input": "Can I track my card while it is in the process of delivery?",
+    "output": "New cards typically arrive within 7-10 business days. I can check the delivery status for you.",
+    "intent": "card_arrival",
+    "label": 11
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a professional banking assistant. Provide accurate, helpful, and compliant responses to customer inquiries.\n<</SYS>>\n\nHow do I know if I will get my card, or if it is lost? [/INST] New cards typically arrive within 7-10 business days. I can check the delivery status for you. </s>",
+    "input": "How do I know if I will get my card, or if it is lost?",
+    "output": "New cards typically arrive within 7-10 business days. I can check the delivery status for you.",
+    "intent": "card_arrival",
+    "label": 11
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a professional banking assistant. Provide accurate, helpful, and compliant responses to customer inquiries.\n<</SYS>>\n\nWhen did you send me my new card? [/INST] New cards typically arrive within 7-10 business days. I can check the delivery status for you. </s>",
+    "input": "When did you send me my new card?",
+    "output": "New cards typically arrive within 7-10 business days. I can check the delivery status for you.",
+    "intent": "card_arrival",
+    "label": 11
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a professional banking assistant. Provide accurate, helpful, and compliant responses to customer inquiries.\n<</SYS>>\n\nDo you have info about the card on delivery? [/INST] New cards typically arrive within 7-10 business days. I can check the delivery status for you. </s>",
+    "input": "Do you have info about the card on delivery?",
+    "output": "New cards typically arrive within 7-10 business days. I can check the delivery status for you.",
+    "intent": "card_arrival",
+    "label": 11
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a professional banking assistant. Provide accurate, helpful, and compliant responses to customer inquiries.\n<</SYS>>\n\nWhat do I do if I still have not received my new card? [/INST] New cards typically arrive within 7-10 business days. I can check the delivery status for you. </s>",
+    "input": "What do I do if I still have not received my new card?",
+    "output": "New cards typically arrive within 7-10 business days. I can check the delivery status for you.",
+    "intent": "card_arrival",
+    "label": 11
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a professional banking assistant. Provide accurate, helpful, and compliant responses to customer inquiries.\n<</SYS>>\n\nDoes the package with my card have tracking? [/INST] New cards typically arrive within 7-10 business days. I can check the delivery status for you. </s>",
+    "input": "Does the package with my card have tracking?",
+    "output": "New cards typically arrive within 7-10 business days. I can check the delivery status for you.",
+    "intent": "card_arrival",
+    "label": 11
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a professional banking assistant. Provide accurate, helpful, and compliant responses to customer inquiries.\n<</SYS>>\n\nI ordered my card but it still isn't here [/INST] New cards typically arrive within 7-10 business days. I can check the delivery status for you. </s>",
+    "input": "I ordered my card but it still isn't here",
+    "output": "New cards typically arrive within 7-10 business days. I can check the delivery status for you.",
+    "intent": "card_arrival",
+    "label": 11
+  }
+]

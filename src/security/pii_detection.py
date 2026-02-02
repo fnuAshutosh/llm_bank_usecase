@@ -1,9 +1,10 @@
 """PII Detection Service"""
 
-from typing import List
-from pydantic import BaseModel
 import logging
 import re
+from typing import List
+
+from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
 
@@ -58,3 +59,7 @@ class PIIDetector:
             masked_text=masked_text,
             confidence=1.0 if pii_detected else 0.0,
         )
+
+
+# Create global instance
+pii_detector = PIIDetector()

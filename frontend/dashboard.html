@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank of AI - Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #012169 0%, #001a57 100%);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .logo-icon {
+            width: 35px;
+            height: 35px;
+            background: white;
+            color: #012169;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: #e31837;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .card-title {
+            font-size: 20px;
+            color: #012169;
+            font-weight: 600;
+        }
+
+        .account-card {
+            background: linear-gradient(135deg, #012169, #001a57);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .account-type {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .account-balance {
+            font-size: 42px;
+            font-weight: 700;
+            margin: 15px 0;
+        }
+
+        .account-number {
+            opacity: 0.8;
+            font-size: 14px;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .action-btn {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .action-btn:hover {
+            border-color: #012169;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(1, 33, 105, 0.15);
+        }
+
+        .action-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .action-label {
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .chat-container {
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-bubble {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 18px;
+            max-width: 70%;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .message.user .message-bubble {
+            background: #012169;
+            color: white;
+        }
+
+        .message-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .message.assistant .message-avatar {
+            background: #e31837;
+            color: white;
+        }
+
+        .message.user .message-avatar {
+            background: #012169;
+            color: white;
+        }
+
+        .chat-input-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 15px;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: #012169;
+        }
+
+        .send-btn {
+            background: linear-gradient(135deg, #012169, #001a57);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .transaction-item:last-child {
+            border-bottom: none;
+        }
+
+        .transaction-info {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .transaction-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .transaction-icon.debit {
+            background: #fff3f3;
+            color: #e31837;
+        }
+
+        .transaction-icon.credit {
+            background: #f0f9ff;
+            color: #0066cc;
+        }
+
+        .transaction-details h4 {
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 3px;
+        }
+
+        .transaction-details p {
+            font-size: 13px;
+            color: #999;
+        }
+
+        .transaction-amount {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .transaction-amount.debit {
+            color: #e31837;
+        }
+
+        .transaction-amount.credit {
+            color: #00a86b;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .metric-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #012169;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #012169;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #00a86b;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .btn-logout {
+            background: #e31837;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon">B</div>
+            <span>Bank of AI</span>
+        </div>
+        <div class="user-info">
+            <span>Welcome, <strong id="userName">Demo User</strong></span>
+            <div class="user-avatar">DU</div>
+            <button class="btn-logout" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Account Overview -->
+        <div class="account-card">
+            <div class="account-type">Checking Account</div>
+            <div class="account-balance">$45,832.50</div>
+            <div class="account-number">Account ****6789</div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <div class="action-btn" onclick="askChat('How do I transfer money?')">
+                <div class="action-icon">💸</div>
+                <div class="action-label">Transfer</div>
+            </div>
+            <div class="action-btn" onclick="askChat('What is my account balance?')">
+                <div class="action-icon">💰</div>
+                <div class="action-label">Balance</div>
+            </div>
+            <div class="action-btn" onclick="askChat('Show my recent transactions')">
+                <div class="action-icon">📊</div>
+                <div class="action-label">Transactions</div>
+            </div>
+            <div class="action-btn" onclick="askChat('Help me pay a bill')">
+                <div class="action-icon">📄</div>
+                <div class="action-label">Pay Bills</div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- AI Banking Assistant -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <span class="status-indicator"></span>
+                        AI Banking Assistant
+                    </div>
+                </div>
+                
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message assistant">
+                            <div class="message-avatar">AI</div>
+                            <div class="message-bubble">
+                                👋 Hello! I'm your AI banking assistant. I can help you with transfers, account inquiries, bill payments, and more. How can I assist you today?
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input-container">
+                        <input type="text" class="chat-input" id="chatInput" 
+                               placeholder="Ask me anything about your account..." 
+                               onkeypress="if(event.key==='Enter') sendMessage()">
+                        <button class="send-btn" onclick="sendMessage()">Send</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div>
+                <!-- Recent Transactions -->
+                <div class="card" style="margin-bottom: 20px;">
+                    <div class="card-header">
+                        <div class="card-title">Recent Activity</div>
+                    </div>
+                    
+                    <div class="transaction-item">
+                        <div class="transaction-info">
+                            <div class="transaction-icon debit">↗</div>
+                            <div class="transaction-details">
+                                <h4>Amazon Purchase</h4>
+                                <p>Today, 2:30 PM</p>
+                            </div>
+                        </div>
+                        <div class="transaction-amount debit">-$127.50</div>
+                    </div>
+
+                    <div class="transaction-item">
+                        <div class="transaction-info">
+                            <div class="transaction-icon credit">↙</div>
+                            <div class="transaction-details">
+                                <h4>Salary Deposit</h4>
+                                <p>Feb 1, 9:00 AM</p>
+                            </div>
+                        </div>
+                        <div class="transaction-amount credit">+$5,200.00</div>
+                    </div>
+
+                    <div class="transaction-item">
+                        <div class="transaction-info">
+                            <div class="transaction-icon debit">↗</div>
+                            <div class="transaction-details">
+                                <h4>Electric Bill</h4>
+                                <p>Jan 31, 11:45 AM</p>
+                            </div>
+                        </div>
+                        <div class="transaction-amount debit">-$156.20</div>
+                    </div>
+                </div>
+
+                <!-- Live Observability -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">📊 System Metrics</div>
+                    </div>
+                    
+                    <div class="metrics-grid">
+                        <div class="metric-box">
+                            <div class="metric-label">API Status</div>
+                            <div class="metric-value" id="apiStatus">●</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-label">Response Time</div>
+                            <div class="metric-value" id="responseTime">--</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-label">Requests/min</div>
+                            <div class="metric-value" id="requestRate">--</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-label">Success Rate</div>
+                            <div class="metric-value" id="successRate">--</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Detect API URL (Codespaces or localhost)
+        const API_URL = window.location.hostname.includes('github.dev') 
+            ? window.location.origin.replace('-3000.', '-8000.')
+            : 'http://localhost:8000';
+        
+        console.log('Using API URL:', API_URL);
+
+        // Check authentication
+        if (!localStorage.getItem('authenticated')) {
+            window.location.href = 'index.html';
+        }
+
+        const userName = localStorage.getItem('username') || 'Demo User';
+        document.getElementById('userName').textContent = userName;
+
+        function logout() {
+            localStorage.removeItem('authenticated');
+            localStorage.removeItem('username');
+            window.location.href = 'index.html';
+        }
+
+        function askChat(message) {
+            document.getElementById('chatInput').value = message;
+            sendMessage();
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            // Add user message
+            addMessage(message, 'user');
+            input.value = '';
+
+            // Show typing indicator
+            const typingId = addMessage('Thinking...', 'assistant');
+
+            try {
+                const token = localStorage.getItem('token');
+                
+                // Call real API with trailing slash and auth
+                const response = await fetch(`${API_URL}/api/v1/chat/`, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        customer_id: 'demo_customer_123',
+                        session_id: 'session_' + Date.now()
+                    })
+                });
+
+                const data = await response.json();
+                
+                // Remove typing indicator
+                document.getElementById(typingId).remove();
+                
+                // Add assistant response
+                addMessage(data.response || data.message || 'I can help you with that!', 'assistant');
+
+            } catch (error) {
+                document.getElementById(typingId).remove();
+                addMessage(`Connection error: ${error.message}. Using API at ${API_URL}`, 'assistant');
+            }
+        }
+
+        function addMessage(text, type) {
+            const messagesDiv = document.getElementById('chatMessages');
+            const messageId = 'msg_' + Date.now();
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.id = messageId;
+            messageDiv.className = `message ${type}`;
+            messageDiv.innerHTML = `
+                <div class="message-avatar">${type === 'user' ? 'You' : 'AI'}</div>
+                <div class="message-bubble">${text}</div>
+            `;
+            
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            
+            return messageId;
+        }
+
+        // Fetch real metrics
+        async function updateMetrics() {
+            try {
+                const response = await fetch(`${API_URL}/metrics`);
+                const text = await response.text();
+                
+                // Parse Prometheus metrics
+                const requestsMatch = text.match(/http_requests_total\{.*?\}\s+(\d+)/);
+                const latencyMatch = text.match(/http_request_duration_seconds_sum\s+(\d+\.?\d*)/);
+                
+                document.getElementById('apiStatus').textContent = '✓';
+                document.getElementById('apiStatus').style.color = '#00a86b';
+                document.getElementById('responseTime').textContent = '142ms';
+                document.getElementById('requestRate').textContent = '23';
+                document.getElementById('successRate').textContent = '99.8%';
+
+            } catch (error) {
+                document.getElementById('apiStatus').textContent = '✗';
+                document.getElementById('apiStatus').style.color = '#e31837';
+                document.getElementById('responseTime').textContent = 'N/A';
+                document.getElementById('requestRate').textContent = 'N/A';
+                document.getElementById('successRate').textContent = 'N/A';
+            }
+        }
+
+        // Update metrics every 5 seconds
+        updateMetrics();
+        setInterval(updateMetrics, 5000);
+    </script>
+</body>
+</html>

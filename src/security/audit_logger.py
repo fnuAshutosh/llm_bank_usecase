@@ -1,8 +1,8 @@
 """Audit logging for compliance"""
 
-from datetime import datetime
-import logging
 import json
+import logging
+from datetime import datetime
 from typing import Optional
 
 logger = logging.getLogger(__name__)
@@ -43,3 +43,45 @@ class AuditLogger:
         # For now, log to audit logger
         audit_logger = logging.getLogger("audit")
         audit_logger.info(json.dumps(audit_entry))
+
+    async def log_chat_interaction(
+        self,
+        customer_id: str,
+        message: str,
+        response: str,
+        model: str,
+        pii_detected: bool,
+        conversation_id: Optional[str] = None,
+        latency_ms: Optional[int] = None,
+    ) -> None:
+        """Compatibility wrapper for chat audit logging."""
+        await self.log_interaction(
+            customer_id=customer_id,
+            message=message,
+            response=response,
+            latency_ms=latency_ms or 0,
+            model=model,
+            pii_detected=pii_detected,
+            conversation_id=conversation_id,
+        )
+
+    async def log_escalation(
+        self,
+        customer_id: str,
+        conversation_id: str,
+        reason: str,
+    ) -> None:
+        """Log escalation events for compliance."""
+        audit_entry = {
+            "timestamp": datetime.utcnow().isoformat(),
+            "event_type": "conversation_escalation",
+            "customer_id": customer_id,
+            "conversation_id": conversation_id,
+            "reason": reason,
+        }
+        audit_logger = logging.getLogger("audit")
+        audit_logger.info(json.dumps(audit_entry))
+
+
+# Create global instance
+audit_logger = AuditLogger()

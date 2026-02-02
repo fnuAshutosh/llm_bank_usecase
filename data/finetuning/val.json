@@ -1,0 +1,502 @@
+[
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat is my current account balance? [/INST] Your checking account balance is $2,450.32. </s>",
+    "input": "What is my current account balance?",
+    "output": "Your checking account balance is $2,450.32."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nI need to transfer $500 to savings. [/INST] Transfer initiated. Your new checking balance is $1,950.32. </s>",
+    "input": "I need to transfer $500 to savings.",
+    "output": "Transfer initiated. Your new checking balance is $1,950.32."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nHow much interest do I earn? [/INST] Your savings account earns 2.5% APY. </s>",
+    "input": "How much interest do I earn?",
+    "output": "Your savings account earns 2.5% APY."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan you help with a declined transaction? [/INST] Let me check. The transaction was declined due to insufficient funds. </s>",
+    "input": "Can you help with a declined transaction?",
+    "output": "Let me check. The transaction was declined due to insufficient funds."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat are your ATM fees? [/INST] ATM withdrawals at our network are free. Out-of-network fees are $3. </s>",
+    "input": "What are your ATM fees?",
+    "output": "ATM withdrawals at our network are free. Out-of-network fees are $3."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nI want to open a new account. [/INST] Great! We offer checking, savings, and money market accounts. </s>",
+    "input": "I want to open a new account.",
+    "output": "Great! We offer checking, savings, and money market accounts."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nHow do I dispute a charge? [/INST] You can file a dispute through our mobile app or by calling customer service. </s>",
+    "input": "How do I dispute a charge?",
+    "output": "You can file a dispute through our mobile app or by calling customer service."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat's my credit card limit? [/INST] Your current credit limit is $10,000 with $7,200 available. </s>",
+    "input": "What's my credit card limit?",
+    "output": "Your current credit limit is $10,000 with $7,200 available."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan I get a loan? [/INST] Yes, we offer personal loans, auto loans, and mortgages. What are you looking for? </s>",
+    "input": "Can I get a loan?",
+    "output": "Yes, we offer personal loans, auto loans, and mortgages. What are you looking for?"
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nI lost my debit card. [/INST] I'll deactivate it immediately and order a replacement. It will arrive in 5-7 days. </s>",
+    "input": "I lost my debit card.",
+    "output": "I'll deactivate it immediately and order a replacement. It will arrive in 5-7 days."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat's the overdraft fee? [/INST] Our overdraft protection fee is $35 per transaction. </s>",
+    "input": "What's the overdraft fee?",
+    "output": "Our overdraft protection fee is $35 per transaction."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan I increase my credit limit? [/INST] Yes, I can submit a request. It typically takes 3-5 business days. </s>",
+    "input": "Can I increase my credit limit?",
+    "output": "Yes, I can submit a request. It typically takes 3-5 business days."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nHow do I set up direct deposit? [/INST] You'll need our routing number (123456789) and your account number. </s>",
+    "input": "How do I set up direct deposit?",
+    "output": "You'll need our routing number (123456789) and your account number."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat are your business hours? [/INST] We're open Monday-Friday 9am-5pm, and Saturday 9am-1pm. </s>",
+    "input": "What are your business hours?",
+    "output": "We're open Monday-Friday 9am-5pm, and Saturday 9am-1pm."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nI need a cashier's check. [/INST] Cashier's checks cost $10. How much do you need it for? </s>",
+    "input": "I need a cashier's check.",
+    "output": "Cashier's checks cost $10. How much do you need it for?"
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan I pay bills online? [/INST] Yes, our bill pay service is free and available through online banking. </s>",
+    "input": "Can I pay bills online?",
+    "output": "Yes, our bill pay service is free and available through online banking."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat's the minimum balance? [/INST] Checking accounts require a $500 minimum to avoid monthly fees. </s>",
+    "input": "What's the minimum balance?",
+    "output": "Checking accounts require a $500 minimum to avoid monthly fees."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nHow do I close my account? [/INST] You can close it in person, by phone, or through secure message. </s>",
+    "input": "How do I close my account?",
+    "output": "You can close it in person, by phone, or through secure message."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nAre there foreign transaction fees? [/INST] Yes, there's a 3% fee on international purchases. </s>",
+    "input": "Are there foreign transaction fees?",
+    "output": "Yes, there's a 3% fee on international purchases."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan I get a credit score report? [/INST] Yes, we provide free monthly credit score updates through your account. </s>",
+    "input": "Can I get a credit score report?",
+    "output": "Yes, we provide free monthly credit score updates through your account."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat is my current account balance? [/INST] Your checking account balance is $2,450.32. </s>",
+    "input": "What is my current account balance?",
+    "output": "Your checking account balance is $2,450.32."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nI need to transfer $500 to savings. [/INST] Transfer initiated. Your new checking balance is $1,950.32. </s>",
+    "input": "I need to transfer $500 to savings.",
+    "output": "Transfer initiated. Your new checking balance is $1,950.32."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nHow much interest do I earn? [/INST] Your savings account earns 2.5% APY. </s>",
+    "input": "How much interest do I earn?",
+    "output": "Your savings account earns 2.5% APY."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan you help with a declined transaction? [/INST] Let me check. The transaction was declined due to insufficient funds. </s>",
+    "input": "Can you help with a declined transaction?",
+    "output": "Let me check. The transaction was declined due to insufficient funds."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat are your ATM fees? [/INST] ATM withdrawals at our network are free. Out-of-network fees are $3. </s>",
+    "input": "What are your ATM fees?",
+    "output": "ATM withdrawals at our network are free. Out-of-network fees are $3."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nI want to open a new account. [/INST] Great! We offer checking, savings, and money market accounts. </s>",
+    "input": "I want to open a new account.",
+    "output": "Great! We offer checking, savings, and money market accounts."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nHow do I dispute a charge? [/INST] You can file a dispute through our mobile app or by calling customer service. </s>",
+    "input": "How do I dispute a charge?",
+    "output": "You can file a dispute through our mobile app or by calling customer service."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat's my credit card limit? [/INST] Your current credit limit is $10,000 with $7,200 available. </s>",
+    "input": "What's my credit card limit?",
+    "output": "Your current credit limit is $10,000 with $7,200 available."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan I get a loan? [/INST] Yes, we offer personal loans, auto loans, and mortgages. What are you looking for? </s>",
+    "input": "Can I get a loan?",
+    "output": "Yes, we offer personal loans, auto loans, and mortgages. What are you looking for?"
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nI lost my debit card. [/INST] I'll deactivate it immediately and order a replacement. It will arrive in 5-7 days. </s>",
+    "input": "I lost my debit card.",
+    "output": "I'll deactivate it immediately and order a replacement. It will arrive in 5-7 days."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat's the overdraft fee? [/INST] Our overdraft protection fee is $35 per transaction. </s>",
+    "input": "What's the overdraft fee?",
+    "output": "Our overdraft protection fee is $35 per transaction."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan I increase my credit limit? [/INST] Yes, I can submit a request. It typically takes 3-5 business days. </s>",
+    "input": "Can I increase my credit limit?",
+    "output": "Yes, I can submit a request. It typically takes 3-5 business days."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nHow do I set up direct deposit? [/INST] You'll need our routing number (123456789) and your account number. </s>",
+    "input": "How do I set up direct deposit?",
+    "output": "You'll need our routing number (123456789) and your account number."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat are your business hours? [/INST] We're open Monday-Friday 9am-5pm, and Saturday 9am-1pm. </s>",
+    "input": "What are your business hours?",
+    "output": "We're open Monday-Friday 9am-5pm, and Saturday 9am-1pm."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nI need a cashier's check. [/INST] Cashier's checks cost $10. How much do you need it for? </s>",
+    "input": "I need a cashier's check.",
+    "output": "Cashier's checks cost $10. How much do you need it for?"
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan I pay bills online? [/INST] Yes, our bill pay service is free and available through online banking. </s>",
+    "input": "Can I pay bills online?",
+    "output": "Yes, our bill pay service is free and available through online banking."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat's the minimum balance? [/INST] Checking accounts require a $500 minimum to avoid monthly fees. </s>",
+    "input": "What's the minimum balance?",
+    "output": "Checking accounts require a $500 minimum to avoid monthly fees."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nHow do I close my account? [/INST] You can close it in person, by phone, or through secure message. </s>",
+    "input": "How do I close my account?",
+    "output": "You can close it in person, by phone, or through secure message."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nAre there foreign transaction fees? [/INST] Yes, there's a 3% fee on international purchases. </s>",
+    "input": "Are there foreign transaction fees?",
+    "output": "Yes, there's a 3% fee on international purchases."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan I get a credit score report? [/INST] Yes, we provide free monthly credit score updates through your account. </s>",
+    "input": "Can I get a credit score report?",
+    "output": "Yes, we provide free monthly credit score updates through your account."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat is my current account balance? [/INST] Your checking account balance is $2,450.32. </s>",
+    "input": "What is my current account balance?",
+    "output": "Your checking account balance is $2,450.32."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nI need to transfer $500 to savings. [/INST] Transfer initiated. Your new checking balance is $1,950.32. </s>",
+    "input": "I need to transfer $500 to savings.",
+    "output": "Transfer initiated. Your new checking balance is $1,950.32."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nHow much interest do I earn? [/INST] Your savings account earns 2.5% APY. </s>",
+    "input": "How much interest do I earn?",
+    "output": "Your savings account earns 2.5% APY."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan you help with a declined transaction? [/INST] Let me check. The transaction was declined due to insufficient funds. </s>",
+    "input": "Can you help with a declined transaction?",
+    "output": "Let me check. The transaction was declined due to insufficient funds."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat are your ATM fees? [/INST] ATM withdrawals at our network are free. Out-of-network fees are $3. </s>",
+    "input": "What are your ATM fees?",
+    "output": "ATM withdrawals at our network are free. Out-of-network fees are $3."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nI want to open a new account. [/INST] Great! We offer checking, savings, and money market accounts. </s>",
+    "input": "I want to open a new account.",
+    "output": "Great! We offer checking, savings, and money market accounts."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nHow do I dispute a charge? [/INST] You can file a dispute through our mobile app or by calling customer service. </s>",
+    "input": "How do I dispute a charge?",
+    "output": "You can file a dispute through our mobile app or by calling customer service."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat's my credit card limit? [/INST] Your current credit limit is $10,000 with $7,200 available. </s>",
+    "input": "What's my credit card limit?",
+    "output": "Your current credit limit is $10,000 with $7,200 available."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan I get a loan? [/INST] Yes, we offer personal loans, auto loans, and mortgages. What are you looking for? </s>",
+    "input": "Can I get a loan?",
+    "output": "Yes, we offer personal loans, auto loans, and mortgages. What are you looking for?"
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nI lost my debit card. [/INST] I'll deactivate it immediately and order a replacement. It will arrive in 5-7 days. </s>",
+    "input": "I lost my debit card.",
+    "output": "I'll deactivate it immediately and order a replacement. It will arrive in 5-7 days."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat's the overdraft fee? [/INST] Our overdraft protection fee is $35 per transaction. </s>",
+    "input": "What's the overdraft fee?",
+    "output": "Our overdraft protection fee is $35 per transaction."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan I increase my credit limit? [/INST] Yes, I can submit a request. It typically takes 3-5 business days. </s>",
+    "input": "Can I increase my credit limit?",
+    "output": "Yes, I can submit a request. It typically takes 3-5 business days."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nHow do I set up direct deposit? [/INST] You'll need our routing number (123456789) and your account number. </s>",
+    "input": "How do I set up direct deposit?",
+    "output": "You'll need our routing number (123456789) and your account number."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat are your business hours? [/INST] We're open Monday-Friday 9am-5pm, and Saturday 9am-1pm. </s>",
+    "input": "What are your business hours?",
+    "output": "We're open Monday-Friday 9am-5pm, and Saturday 9am-1pm."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nI need a cashier's check. [/INST] Cashier's checks cost $10. How much do you need it for? </s>",
+    "input": "I need a cashier's check.",
+    "output": "Cashier's checks cost $10. How much do you need it for?"
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan I pay bills online? [/INST] Yes, our bill pay service is free and available through online banking. </s>",
+    "input": "Can I pay bills online?",
+    "output": "Yes, our bill pay service is free and available through online banking."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat's the minimum balance? [/INST] Checking accounts require a $500 minimum to avoid monthly fees. </s>",
+    "input": "What's the minimum balance?",
+    "output": "Checking accounts require a $500 minimum to avoid monthly fees."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nHow do I close my account? [/INST] You can close it in person, by phone, or through secure message. </s>",
+    "input": "How do I close my account?",
+    "output": "You can close it in person, by phone, or through secure message."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nAre there foreign transaction fees? [/INST] Yes, there's a 3% fee on international purchases. </s>",
+    "input": "Are there foreign transaction fees?",
+    "output": "Yes, there's a 3% fee on international purchases."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan I get a credit score report? [/INST] Yes, we provide free monthly credit score updates through your account. </s>",
+    "input": "Can I get a credit score report?",
+    "output": "Yes, we provide free monthly credit score updates through your account."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat is my current account balance? [/INST] Your checking account balance is $2,450.32. </s>",
+    "input": "What is my current account balance?",
+    "output": "Your checking account balance is $2,450.32."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nI need to transfer $500 to savings. [/INST] Transfer initiated. Your new checking balance is $1,950.32. </s>",
+    "input": "I need to transfer $500 to savings.",
+    "output": "Transfer initiated. Your new checking balance is $1,950.32."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nHow much interest do I earn? [/INST] Your savings account earns 2.5% APY. </s>",
+    "input": "How much interest do I earn?",
+    "output": "Your savings account earns 2.5% APY."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan you help with a declined transaction? [/INST] Let me check. The transaction was declined due to insufficient funds. </s>",
+    "input": "Can you help with a declined transaction?",
+    "output": "Let me check. The transaction was declined due to insufficient funds."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat are your ATM fees? [/INST] ATM withdrawals at our network are free. Out-of-network fees are $3. </s>",
+    "input": "What are your ATM fees?",
+    "output": "ATM withdrawals at our network are free. Out-of-network fees are $3."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nI want to open a new account. [/INST] Great! We offer checking, savings, and money market accounts. </s>",
+    "input": "I want to open a new account.",
+    "output": "Great! We offer checking, savings, and money market accounts."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nHow do I dispute a charge? [/INST] You can file a dispute through our mobile app or by calling customer service. </s>",
+    "input": "How do I dispute a charge?",
+    "output": "You can file a dispute through our mobile app or by calling customer service."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat's my credit card limit? [/INST] Your current credit limit is $10,000 with $7,200 available. </s>",
+    "input": "What's my credit card limit?",
+    "output": "Your current credit limit is $10,000 with $7,200 available."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan I get a loan? [/INST] Yes, we offer personal loans, auto loans, and mortgages. What are you looking for? </s>",
+    "input": "Can I get a loan?",
+    "output": "Yes, we offer personal loans, auto loans, and mortgages. What are you looking for?"
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nI lost my debit card. [/INST] I'll deactivate it immediately and order a replacement. It will arrive in 5-7 days. </s>",
+    "input": "I lost my debit card.",
+    "output": "I'll deactivate it immediately and order a replacement. It will arrive in 5-7 days."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat's the overdraft fee? [/INST] Our overdraft protection fee is $35 per transaction. </s>",
+    "input": "What's the overdraft fee?",
+    "output": "Our overdraft protection fee is $35 per transaction."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan I increase my credit limit? [/INST] Yes, I can submit a request. It typically takes 3-5 business days. </s>",
+    "input": "Can I increase my credit limit?",
+    "output": "Yes, I can submit a request. It typically takes 3-5 business days."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nHow do I set up direct deposit? [/INST] You'll need our routing number (123456789) and your account number. </s>",
+    "input": "How do I set up direct deposit?",
+    "output": "You'll need our routing number (123456789) and your account number."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat are your business hours? [/INST] We're open Monday-Friday 9am-5pm, and Saturday 9am-1pm. </s>",
+    "input": "What are your business hours?",
+    "output": "We're open Monday-Friday 9am-5pm, and Saturday 9am-1pm."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nI need a cashier's check. [/INST] Cashier's checks cost $10. How much do you need it for? </s>",
+    "input": "I need a cashier's check.",
+    "output": "Cashier's checks cost $10. How much do you need it for?"
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan I pay bills online? [/INST] Yes, our bill pay service is free and available through online banking. </s>",
+    "input": "Can I pay bills online?",
+    "output": "Yes, our bill pay service is free and available through online banking."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat's the minimum balance? [/INST] Checking accounts require a $500 minimum to avoid monthly fees. </s>",
+    "input": "What's the minimum balance?",
+    "output": "Checking accounts require a $500 minimum to avoid monthly fees."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nHow do I close my account? [/INST] You can close it in person, by phone, or through secure message. </s>",
+    "input": "How do I close my account?",
+    "output": "You can close it in person, by phone, or through secure message."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nAre there foreign transaction fees? [/INST] Yes, there's a 3% fee on international purchases. </s>",
+    "input": "Are there foreign transaction fees?",
+    "output": "Yes, there's a 3% fee on international purchases."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan I get a credit score report? [/INST] Yes, we provide free monthly credit score updates through your account. </s>",
+    "input": "Can I get a credit score report?",
+    "output": "Yes, we provide free monthly credit score updates through your account."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat is my current account balance? [/INST] Your checking account balance is $2,450.32. </s>",
+    "input": "What is my current account balance?",
+    "output": "Your checking account balance is $2,450.32."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nI need to transfer $500 to savings. [/INST] Transfer initiated. Your new checking balance is $1,950.32. </s>",
+    "input": "I need to transfer $500 to savings.",
+    "output": "Transfer initiated. Your new checking balance is $1,950.32."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nHow much interest do I earn? [/INST] Your savings account earns 2.5% APY. </s>",
+    "input": "How much interest do I earn?",
+    "output": "Your savings account earns 2.5% APY."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan you help with a declined transaction? [/INST] Let me check. The transaction was declined due to insufficient funds. </s>",
+    "input": "Can you help with a declined transaction?",
+    "output": "Let me check. The transaction was declined due to insufficient funds."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat are your ATM fees? [/INST] ATM withdrawals at our network are free. Out-of-network fees are $3. </s>",
+    "input": "What are your ATM fees?",
+    "output": "ATM withdrawals at our network are free. Out-of-network fees are $3."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nI want to open a new account. [/INST] Great! We offer checking, savings, and money market accounts. </s>",
+    "input": "I want to open a new account.",
+    "output": "Great! We offer checking, savings, and money market accounts."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nHow do I dispute a charge? [/INST] You can file a dispute through our mobile app or by calling customer service. </s>",
+    "input": "How do I dispute a charge?",
+    "output": "You can file a dispute through our mobile app or by calling customer service."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat's my credit card limit? [/INST] Your current credit limit is $10,000 with $7,200 available. </s>",
+    "input": "What's my credit card limit?",
+    "output": "Your current credit limit is $10,000 with $7,200 available."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan I get a loan? [/INST] Yes, we offer personal loans, auto loans, and mortgages. What are you looking for? </s>",
+    "input": "Can I get a loan?",
+    "output": "Yes, we offer personal loans, auto loans, and mortgages. What are you looking for?"
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nI lost my debit card. [/INST] I'll deactivate it immediately and order a replacement. It will arrive in 5-7 days. </s>",
+    "input": "I lost my debit card.",
+    "output": "I'll deactivate it immediately and order a replacement. It will arrive in 5-7 days."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat's the overdraft fee? [/INST] Our overdraft protection fee is $35 per transaction. </s>",
+    "input": "What's the overdraft fee?",
+    "output": "Our overdraft protection fee is $35 per transaction."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan I increase my credit limit? [/INST] Yes, I can submit a request. It typically takes 3-5 business days. </s>",
+    "input": "Can I increase my credit limit?",
+    "output": "Yes, I can submit a request. It typically takes 3-5 business days."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nHow do I set up direct deposit? [/INST] You'll need our routing number (123456789) and your account number. </s>",
+    "input": "How do I set up direct deposit?",
+    "output": "You'll need our routing number (123456789) and your account number."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat are your business hours? [/INST] We're open Monday-Friday 9am-5pm, and Saturday 9am-1pm. </s>",
+    "input": "What are your business hours?",
+    "output": "We're open Monday-Friday 9am-5pm, and Saturday 9am-1pm."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nI need a cashier's check. [/INST] Cashier's checks cost $10. How much do you need it for? </s>",
+    "input": "I need a cashier's check.",
+    "output": "Cashier's checks cost $10. How much do you need it for?"
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan I pay bills online? [/INST] Yes, our bill pay service is free and available through online banking. </s>",
+    "input": "Can I pay bills online?",
+    "output": "Yes, our bill pay service is free and available through online banking."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nWhat's the minimum balance? [/INST] Checking accounts require a $500 minimum to avoid monthly fees. </s>",
+    "input": "What's the minimum balance?",
+    "output": "Checking accounts require a $500 minimum to avoid monthly fees."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nHow do I close my account? [/INST] You can close it in person, by phone, or through secure message. </s>",
+    "input": "How do I close my account?",
+    "output": "You can close it in person, by phone, or through secure message."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nAre there foreign transaction fees? [/INST] Yes, there's a 3% fee on international purchases. </s>",
+    "input": "Are there foreign transaction fees?",
+    "output": "Yes, there's a 3% fee on international purchases."
+  },
+  {
+    "text": "<s>[INST] <<SYS>>\nYou are a helpful banking assistant. Provide accurate and professional responses to customer inquiries.\n<</SYS>>\n\nCan I get a credit score report? [/INST] Yes, we provide free monthly credit score updates through your account. </s>",
+    "input": "Can I get a credit score report?",
+    "output": "Yes, we provide free monthly credit score updates through your account."
+  }
+]

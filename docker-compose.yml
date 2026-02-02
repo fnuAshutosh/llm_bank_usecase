@@ -1,0 +1,234 @@
+version: '3.8'
+
+services:
+  # ============================================================================
+  # PostgreSQL Database (Backup - use Supabase for production)
+  # ============================================================================
+  postgres:
+    image: postgres:15-alpine
+    container_name: banking_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: banking_llm
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - banking_network
+
+  # ============================================================================
+  # Redis Cache
+  # ============================================================================
+  redis:
+    image: redis:7-alpine
+    container_name: banking_redis
+    command: redis-server --requirepass redis_password --maxmemory 512mb --maxmemory-policy allkeys-lru
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - banking_network
+
+  # ============================================================================
+  # Prometheus - Metrics Collection
+  # ============================================================================
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: banking_prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=30d'
+      - '--web.enable-lifecycle'
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    networks:
+      - banking_network
+    depends_on:
+      - api
+
+  # ============================================================================
+  # Grafana - Metrics Visualization
+  # ============================================================================
+  grafana:
+    image: grafana/grafana:latest
+    container_name: banking_grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=redis-datasource
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./config/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./config/grafana/datasources:/etc/grafana/provisioning/datasources
+    networks:
+      - banking_network
+    depends_on:
+      - prometheus
+
+  # ============================================================================
+  # Jaeger - Distributed Tracing
+  # ============================================================================
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: banking_jaeger
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    ports:
+      - "6831:6831/udp"  # Jaeger agent
+      - "6832:6832/udp"  # Jaeger agent
+      - "14268:14268"    # Jaeger collector HTTP
+      - "16686:16686"    # Jaeger UI
+      - "4317:4317"      # OTLP gRPC
+      - "4318:4318"      # OTLP HTTP
+    networks:
+      - banking_network
+
+  # ============================================================================
+  # Elasticsearch - Log Storage (Optional - ELK Stack)
+  # ============================================================================
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.3
+    container_name: banking_elasticsearch
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - banking_network
+
+  # ============================================================================
+  # Kibana - Log Visualization (Optional - ELK Stack)
+  # ============================================================================
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.11.3
+    container_name: banking_kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    networks:
+      - banking_network
+    depends_on:
+      - elasticsearch
+
+  # ============================================================================
+  # FastAPI Application
+  # ============================================================================
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: banking_api
+    command: uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "8000:8000"
+    environment:
+      # Application
+      - APP_ENV=docker
+      - DEBUG=true
+      - LOG_LEVEL=INFO
+      
+      # Database (use Supabase or local PostgreSQL)
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgres@postgres:5432/banking_llm
+      
+      # Supabase (will be configured from .env)
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+      - SUPABASE_SERVICE_KEY=${SUPABASE_SERVICE_KEY}
+      - SUPABASE_DB_PASSWORD=${SUPABASE_DB_PASSWORD}
+      
+      # Redis
+      - REDIS_URL=redis://:redis_password@redis:6379/0
+      
+      # LLM Configuration
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+      - TOGETHER_API_KEY=${TOGETHER_API_KEY}
+      
+      # Security
+      - SECRET_KEY=${SECRET_KEY:-changeme_in_production_32_chars}
+      - JWT_SECRET=${JWT_SECRET:-jwt_secret_changeme_production}
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY:-encryption_key_32_bytes_here_}
+      
+      # Monitoring
+      - PROMETHEUS_ENABLED=true
+      - JAEGER_ENABLED=true
+      - JAEGER_AGENT_HOST=jaeger
+      - JAEGER_AGENT_PORT=6831
+    volumes:
+      - .:/app
+      - /app/.venv  # Prevent container from using host venv
+    networks:
+      - banking_network
+    depends_on:
+      - postgres
+      - redis
+      - jaeger
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ============================================================================
+  # Node Exporter - System Metrics
+  # ============================================================================
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: banking_node_exporter
+    command:
+      - '--path.rootfs=/host'
+    ports:
+      - "9100:9100"
+    volumes:
+      - /:/host:ro,rslave
+    networks:
+      - banking_network
+
+# ============================================================================
+# Volumes
+# ============================================================================
+volumes:
+  postgres_data:
+  redis_data:
+  prometheus_data:
+  grafana_data:
+  elasticsearch_data:
+
+# ============================================================================
+# Networks
+# ============================================================================
+networks:
+  banking_network:
+    driver: bridge

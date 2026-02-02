@@ -1,12 +1,11 @@
 """Health check endpoints"""
 
-from fastapi import APIRouter, status
-from pydantic import BaseModel
+import logging
 from datetime import datetime
 from typing import Dict
-import logging
 
-from src.models.inference import OllamaInferenceService
+from fastapi import APIRouter, status
+from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
 router = APIRouter()

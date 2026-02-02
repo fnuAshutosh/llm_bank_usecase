@@ -1,0 +1,49 @@
+# Lightweight Banking LLM - No ML Libraries
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy only essential requirements (no torch/transformers)
+COPY requirements/base.txt .
+
+# Install core dependencies only (skip ML packages)
+RUN pip install --no-cache-dir \
+    fastapi==0.109.0 \
+    uvicorn[standard]==0.27.0 \
+    pydantic==2.5.3 \
+    pydantic-settings==2.1.0 \
+    sqlalchemy==2.0.25 \
+    psycopg2-binary==2.9.9 \
+    redis==5.0.1 \
+    python-jose[cryptography]==3.3.0 \
+    passlib[bcrypt]==1.7.4 \
+    python-multipart==0.0.6 \
+    httpx==0.26.0 \
+    prometheus-client==0.19.0 \
+    python-dotenv==1.0.0 \
+    supabase==2.3.0 \
+    openai==1.12.0
+
+# Copy application code
+COPY src/ ./src/
+COPY frontend/ ./frontend/
+COPY .env.example .env
+
+# Create logs directory
+RUN mkdir -p logs
+
+# Expose ports
+EXPOSE 8000 3000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8000/ || exit 1
+
+# Start both API and frontend
+CMD uvicorn src.api.main:app --host 0.0.0.0 --port 8000
