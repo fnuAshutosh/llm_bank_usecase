@@ -10,9 +10,9 @@ import os
 from uuid import uuid4
 
 # Setup environment first
-os.environ.setdefault("PINECONE_API_KEY", "your-key-here")
-os.environ.setdefault("PINECONE_ENVIRONMENT", "us-east-1-aws")
-os.environ.setdefault("PINECONE_INDEX_NAME", "banking-chat-embeddings")
+# os.environ.setdefault("PINECONE_API_KEY", "your-key-here")
+# os.environ.setdefault("PINECONE_ENVIRONMENT", "us-east-1-aws")
+# os.environ.setdefault("PINECONE_INDEX_NAME", "banking-chat-embeddings")
 
 from src.services.chat_service import EnhancedChatService
 from src.services.vector_service import VectorService

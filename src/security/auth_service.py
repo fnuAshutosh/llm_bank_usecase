@@ -101,7 +101,7 @@ class AuthService:
             
             # Check if token is expired
             exp = payload.get("exp")
-            if exp and datetime.fromtimestamp(exp) < datetime.utcnow():
+            if exp and datetime.utcfromtimestamp(exp) < datetime.utcnow():
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,
                     detail="Token has expired",

@@ -10,6 +10,7 @@ from openai import AsyncOpenAI
 from ..observability.metrics import track_model_inference
 from ..observability.tracing import trace_function
 from ..utils.config import settings
+from ..llm_training.inference import CustomModelHandler
 
 logger = logging.getLogger(__name__)
 
@@ -37,6 +38,10 @@ class LLMService:
                 api_key=self.together_api_key,
                 base_url="https://api.together.xyz/v1"
             )
+            
+        self.custom_handler = None
+        if self.llm_provider == "custom":
+            self.custom_handler = CustomModelHandler()
 
     @property
     def model(self) -> str:
@@ -74,6 +79,8 @@ class LLMService:
             return await self._generate_together(messages, max_tokens, temperature, stream)
         elif self.llm_provider == "openai":
             return await self._generate_openai(messages, max_tokens, temperature, stream)
+        elif self.llm_provider == "custom":
+            return await self._generate_custom(messages, max_tokens, temperature)
         else:
             raise ValueError(f"Unknown LLM provider: {self.llm_provider}")
     
@@ -84,15 +91,12 @@ class LLMService:
         temperature: float,
         stream: bool
     ) -> str:
-        """Generate response using Ollama"""
+        """Generate response using Ollama Chat API"""
         try:
             async with httpx.AsyncClient(timeout=120.0) as client:
-                # Convert OpenAI format to Ollama format
-                prompt = self._messages_to_prompt(messages)
-                
                 payload = {
                     "model": self.ollama_model,
-                    "prompt": prompt,
+                    "messages": messages,
                     "stream": False,
                     "options": {
                         "temperature": temperature,
@@ -101,19 +105,21 @@ class LLMService:
                 }
                 
                 response = await client.post(
-                    f"{self.ollama_base_url}/api/generate",
+                    f"{self.ollama_base_url}/api/chat",
                     json=payload
                 )
-                response.raise_for_status()
                 
+                response.raise_for_status()
                 result = response.json()
-                generated_text = result.get("response", "")
+                
+                # Extract content from chat response
+                generated_text = result["message"]["content"]
                 
                 # Track metrics
                 track_model_inference(
-                    model_name=self.ollama_model,
+                    model=self.ollama_model,
                     duration=result.get("total_duration", 0) / 1e9,  # Convert to seconds
-                    tokens_generated=result.get("eval_count", 0),
+                    tokens=result.get("eval_count", 0),
                     cost=0.0  # Ollama is free
                 )
                 
@@ -203,6 +209,47 @@ class LLMService:
             logger.error(f"OpenAI generation failed: {e}")
             raise
     
+            return generated_text
+            
+        except Exception as e:
+            logger.error(f"OpenAI generation failed: {e}")
+            raise
+
+    async def _generate_custom(
+        self,
+        messages: List[Dict[str, str]],
+        max_tokens: int,
+        temperature: float
+    ) -> str:
+        """Generate response using Custom Banking LLM"""
+        try:
+            if not self.custom_handler or not self.custom_handler.is_ready:
+                return "Custom model is not ready. Please run training script first."
+            
+            # Simple conversion: just use the last user message for now
+            # TODO: Better prompt formatting for custom model
+            last_msg = messages[-1]["content"] if messages else ""
+            
+            generated_text = self.custom_handler.generate(
+                prompt=last_msg,
+                max_new_tokens=max_tokens,
+                temperature=temperature
+            )
+            
+            # Track metrics (approximate)
+            track_model_inference(
+                model="custom-banking-llm",
+                duration=0.5, # Placeholder
+                tokens=len(generated_text.split()),
+                cost=0.0
+            )
+            
+            return generated_text
+            
+        except Exception as e:
+            logger.error(f"Custom model generation failed: {e}")
+            return f"Error: {str(e)}"
+
     async def generate_stream(
         self,
         messages: List[Dict[str, str]],
@@ -236,14 +283,12 @@ class LLMService:
         max_tokens: int,
         temperature: float
     ) -> AsyncIterator[str]:
-        """Stream response from Ollama"""
+        """Stream response from Ollama using Chat API"""
         try:
             async with httpx.AsyncClient(timeout=120.0) as client:
-                prompt = self._messages_to_prompt(messages)
-                
                 payload = {
                     "model": self.ollama_model,
-                    "prompt": prompt,
+                    "messages": messages,
                     "stream": True,
                     "options": {
                         "temperature": temperature,
@@ -253,7 +298,7 @@ class LLMService:
                 
                 async with client.stream(
                     "POST",
-                    f"{self.ollama_base_url}/api/generate",
+                    f"{self.ollama_base_url}/api/chat",
                     json=payload
                 ) as response:
                     response.raise_for_status()
@@ -261,8 +306,8 @@ class LLMService:
                         if line:
                             try:
                                 data = json.loads(line)
-                                if "response" in data:
-                                    yield data["response"]
+                                if "message" in data and "content" in data["message"]:
+                                    yield data["message"]["content"]
                             except json.JSONDecodeError:
                                 continue
                                 

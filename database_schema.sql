@@ -4,15 +4,25 @@ CREATE TABLE IF NOT EXISTS customers (
     customer_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     email VARCHAR(255) UNIQUE NOT NULL,
     hashed_password TEXT NOT NULL,
-    full_name VARCHAR(255) NOT NULL,
+    full_name VARCHAR(255),
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
     phone_number VARCHAR(20),
+    date_of_birth DATE,
     address TEXT,
     kyc_status VARCHAR(50) DEFAULT 'pending',
     kyc_level INTEGER DEFAULT 0,
     risk_score DECIMAL(5,2) DEFAULT 0.00,
+    is_active BOOLEAN DEFAULT TRUE,
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- ensure missing columns exist on existing deployments
+ALTER TABLE customers ADD COLUMN IF NOT EXISTS first_name VARCHAR(255);
+ALTER TABLE customers ADD COLUMN IF NOT EXISTS last_name VARCHAR(255);
+ALTER TABLE customers ADD COLUMN IF NOT EXISTS date_of_birth DATE;
+ALTER TABLE customers ADD COLUMN IF NOT EXISTS is_active BOOLEAN DEFAULT TRUE;
 
 -- accounts table
 CREATE TABLE IF NOT EXISTS accounts (
@@ -23,25 +33,37 @@ CREATE TABLE IF NOT EXISTS accounts (
     balance DECIMAL(15,2) DEFAULT 0.00,
     currency VARCHAR(3) DEFAULT 'USD',
     status VARCHAR(20) DEFAULT 'active',
+    is_active BOOLEAN DEFAULT TRUE,
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+ALTER TABLE accounts ADD COLUMN IF NOT EXISTS is_active BOOLEAN DEFAULT TRUE;
 
 -- transactions table
 CREATE TABLE IF NOT EXISTS transactions (
     transaction_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     account_id UUID REFERENCES accounts(account_id) ON DELETE CASCADE,
+    from_account_id UUID,
+    to_account_id UUID,
     transaction_type VARCHAR(50) NOT NULL,
     amount DECIMAL(15,2) NOT NULL,
     currency VARCHAR(3) DEFAULT 'USD',
     status VARCHAR(20) DEFAULT 'pending',
     description TEXT,
     merchant VARCHAR(255),
+    merchant_name VARCHAR(255),
+    merchant_category VARCHAR(255),
     location VARCHAR(255),
     fraud_score DECIMAL(5,2) DEFAULT 0.00,
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+ALTER TABLE transactions ADD COLUMN IF NOT EXISTS from_account_id UUID;
+ALTER TABLE transactions ADD COLUMN IF NOT EXISTS to_account_id UUID;
+ALTER TABLE transactions ADD COLUMN IF NOT EXISTS merchant_name VARCHAR(255);
+ALTER TABLE transactions ADD COLUMN IF NOT EXISTS merchant_category VARCHAR(255);
 
 -- fraud_alerts table
 CREATE TABLE IF NOT EXISTS fraud_alerts (

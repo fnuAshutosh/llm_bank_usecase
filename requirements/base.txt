@@ -5,6 +5,7 @@
 fastapi==0.109.0
 uvicorn[standard]==0.27.0
 pydantic==2.5.3
+email-validator
 pydantic-settings==2.1.0
 
 # Database & ORM
@@ -12,8 +13,8 @@ psycopg2-binary==2.9.9
 asyncpg==0.29.0
 sqlalchemy[asyncio]==2.0.25
 alembic==1.13.1
-supabase==2.3.0  # Supabase client SDK
-postgrest==0.13.0
+supabase
+postgrest
 
 # Redis/Caching
 redis==5.0.1
@@ -58,13 +59,13 @@ aiohttp==3.9.1
 # Monitoring & Observability
 prometheus-client==0.19.0
 prometheus-fastapi-instrumentator==6.1.0
-opentelemetry-api==1.22.0
-opentelemetry-sdk==1.22.0
-opentelemetry-instrumentation-fastapi==0.43b0
-opentelemetry-exporter-jaeger==1.22.0
-opentelemetry-instrumentation-sqlalchemy==0.43b0
-opentelemetry-instrumentation-redis==0.43b0
-opentelemetry-instrumentation-httpx==0.43b0
+opentelemetry-api==1.21.0
+opentelemetry-sdk==1.21.0
+opentelemetry-instrumentation-fastapi==0.42b0
+opentelemetry-exporter-jaeger==1.21.0
+opentelemetry-instrumentation-sqlalchemy==0.42b0
+opentelemetry-instrumentation-redis==0.42b0
+opentelemetry-instrumentation-httpx==0.42b0
 python-json-logger==2.0.7
 
 # Data Processing
@@ -73,11 +74,6 @@ numpy==1.26.3
 polars==0.19.19
 
 # Monitoring & Logging
-prometheus-client==0.19.0
-opentelemetry-api==1.21.0
-opentelemetry-sdk==1.21.0
-opentelemetry-instrumentation-fastapi==0.42b0
-python-json-logger==2.0.7
 loguru==0.7.2
 
 # Utilities

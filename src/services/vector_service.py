@@ -58,7 +58,7 @@ class VectorService:
                     metric="cosine",
                     spec=ServerlessSpec(
                         cloud="aws",
-                        region=self.settings.PINECONE_ENVIRONMENT.split("-")[0:2]
+                        region="-".join(self.settings.PINECONE_ENVIRONMENT.split("-")[:3])
                     )
                 )
                 logger.info(f"✓ Index created: {self.index_name}")

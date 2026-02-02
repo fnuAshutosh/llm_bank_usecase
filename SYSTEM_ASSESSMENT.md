@@ -1,4 +1,4 @@
-# System Resource Assessment - Banking LLM Project
+HYBRID (RECOMMENDED)# System Resource Assessment - Banking LLM Project
 
 **Assessment Date:** February 1, 2026  
 **System:** macOS (Intel), Python 3.11.14  
