@@ -1,0 +1,37 @@
+# Quick Fix - Just Copy-Paste This in Colab
+
+## The Error You're Getting
+```
+FileNotFoundError: [Errno 2] No such file or directory: 'models/tokenizer.json'
+```
+
+## The Fix - ONE Cell (Copy-Paste)
+
+**Add this cell in your Colab notebook RIGHT NOW:**
+
+```python
+import os
+os.makedirs('models', exist_ok=True)
+os.makedirs('data/finetuning', exist_ok=True)
+print("✅ Fixed! Directories created.")
+```
+
+**Then run your tokenizer cell again. Done!** ✅
+
+---
+
+## That's It!
+
+Just those 4 lines of code fix the error. Run them, then continue with your training.
+
+**No need to restart or redownload anything.**
+
+---
+
+## Why This Works
+
+- `os.makedirs()` creates the directory
+- `exist_ok=True` means "don't error if it already exists"
+- This prevents the FileNotFoundError
+
+**Time to fix: 30 seconds** ⚡
