@@ -1,12 +1,14 @@
 """Banking LLM API - Production Ready Main Application"""
 
 import logging
+import os
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 
 from fastapi import FastAPI, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 
 from src.api.middleware.auth import AuthMiddleware
 from src.api.middleware.logging_middleware import LoggingMiddleware
@@ -83,7 +85,7 @@ app.add_middleware(RateLimitMiddleware)    # Rate limiting
 if settings.ENABLE_TRACING:
     instrument_app(app)
 
-# Include routers
+# Include routers (MUST come before static mount)
 app.include_router(health.router, tags=["Health"])
 app.include_router(auth.router, tags=["Authentication"])
 app.include_router(accounts.router, tags=["Accounts"])
@@ -101,6 +103,12 @@ else:
     logger.warning("⚠️  Semantic search routes disabled")
 
 logger.info("✅ All routes registered")
+
+# Mount static files LAST (so API routes take precedence)
+frontend_path = os.path.join(os.path.dirname(__file__), "..", "..", "frontend")
+if os.path.exists(frontend_path):
+    app.mount("/", StaticFiles(directory=frontend_path, html=True), name="static")
+    logger.info(f"✅ Static files mounted from {frontend_path}")
 
 
 @app.exception_handler(Exception)

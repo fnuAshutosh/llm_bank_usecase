@@ -61,26 +61,44 @@
     </div>
 
     <script>
+        // 🚀 AUTO-DETECT API ENDPOINT (Works on localhost, Codespace, and production)
+        const API_BASE_URL = (() => {
+            const hostname = window.location.hostname;
+            const protocol = window.location.protocol;
+            
+            // If running on localhost, use port 8000
+            if (hostname === 'localhost' || hostname === '127.0.0.1') {
+                return 'http://localhost:8000';
+            }
+            
+            // If running on Codespace or remote, use current domain
+            return `${protocol}//${window.location.host}`;
+        })();
+
+        console.log('🌐 Using API endpoint:', API_BASE_URL);
+
         let token = null;
 
         async function testHealth() {
             const resultDiv = document.getElementById('health-result');
-            resultDiv.innerHTML = '<p>Testing...</p>';
+            resultDiv.innerHTML = `<p>Testing... (using ${API_BASE_URL})</p>`;
             
             try {
-                const response = await fetch('http://localhost:8000/', {
+                const response = await fetch(`${API_BASE_URL}/`, {
                     method: 'GET',
                 });
                 
                 const data = await response.json();
                 resultDiv.innerHTML = `
                     <p class="success">✅ SUCCESS</p>
+                    <p><small>Endpoint: ${API_BASE_URL}</small></p>
                     <pre>${JSON.stringify(data, null, 2)}</pre>
                 `;
             } catch (error) {
                 resultDiv.innerHTML = `
                     <p class="error">❌ ERROR: ${error.message}</p>
-                    <p>Make sure API is running on port 8000</p>
+                    <p>Using endpoint: ${API_BASE_URL}</p>
+                    <p>Make sure API is running and accessible</p>
                 `;
             }
         }
@@ -90,10 +108,10 @@
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             
-            resultDiv.innerHTML = '<p>Logging in...</p>';
+            resultDiv.innerHTML = `<p>Logging in... (using ${API_BASE_URL})</p>`;
             
             try {
-                const response = await fetch('http://localhost:8000/api/v1/auth/token', {
+                const response = await fetch(`${API_BASE_URL}/api/v1/auth/token`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
@@ -120,6 +138,7 @@
             } catch (error) {
                 resultDiv.innerHTML = `
                     <p class="error">❌ ERROR: ${error.message}</p>
+                    <p>Endpoint: ${API_BASE_URL}/api/v1/auth/token</p>
                 `;
             }
         }
@@ -137,10 +156,10 @@
                 return;
             }
             
-            resultDiv.innerHTML = '<p>Sending message...</p>';
+            resultDiv.innerHTML = `<p>Sending message... (using ${API_BASE_URL})</p>`;
             
             try {
-                const response = await fetch('http://localhost:8000/api/v1/chat/', {
+                const response = await fetch(`${API_BASE_URL}/api/v1/chat/`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -170,6 +189,7 @@
             } catch (error) {
                 resultDiv.innerHTML = `
                     <p class="error">❌ ERROR: ${error.message}</p>
+                    <p>Endpoint: ${API_BASE_URL}/api/v1/chat/</p>
                     <p>Possible CORS issue or API not reachable</p>
                 `;
             }
@@ -182,6 +202,7 @@
                 token = savedToken;
                 console.log('Token loaded from localStorage');
             }
+            console.log('Page loaded. API Endpoint:', API_BASE_URL);
         };
     </script>
 </body>

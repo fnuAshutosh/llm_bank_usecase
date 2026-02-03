@@ -297,10 +297,19 @@
     </div>
 
     <script>
-        // Detect API URL (Codespaces or localhost)
-        const API_URL = window.location.hostname.includes('github.dev') 
-            ? window.location.origin.replace('-3000.', '-8000.')
-            : 'http://localhost:8000';
+        // 🚀 AUTO-DETECT API ENDPOINT (Works on localhost, Codespace, and production)
+        const API_URL = (() => {
+            const hostname = window.location.hostname;
+            const protocol = window.location.protocol;
+            
+            // If running on localhost, use port 8000
+            if (hostname === 'localhost' || hostname === '127.0.0.1') {
+                return 'http://localhost:8000';
+            }
+            
+            // If running on Codespace or remote, use current domain
+            return `${protocol}//${window.location.host}`;
+        })();
         
         console.log('Using API URL:', API_URL);
 

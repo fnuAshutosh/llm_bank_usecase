@@ -62,7 +62,7 @@ class Settings(BaseSettings):
     OPENAI_MODEL: str = "gpt-4"
     
     # LLM Provider Selection
-    LLM_PROVIDER: str = "ollama"  # Options: ollama, together, openai
+    LLM_PROVIDER: str = "custom"  # Options: ollama, together, openai, custom (auto-fallback enabled)
     
     # RunPod (Training)
     RUNPOD_API_KEY: str = ""

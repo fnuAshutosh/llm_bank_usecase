@@ -7,10 +7,10 @@ from typing import Any, AsyncIterator, Dict, List, Optional
 import httpx
 from openai import AsyncOpenAI
 
+from ..llm_training.inference import CustomModelHandler
 from ..observability.metrics import track_model_inference
 from ..observability.tracing import trace_function
 from ..utils.config import settings
-from ..llm_training.inference import CustomModelHandler
 
 logger = logging.getLogger(__name__)
 
@@ -51,6 +51,8 @@ class LLMService:
             return self.together_model
         if self.llm_provider == "openai":
             return self.openai_model
+        if self.llm_provider == "custom":
+            return "BankingAssistant-v1.0"
         return "unknown"
     
     @trace_function("llm_generate")
@@ -221,34 +223,60 @@ class LLMService:
         max_tokens: int,
         temperature: float
     ) -> str:
-        """Generate response using Custom Banking LLM"""
+        """Generate response using YOUR custom trained Banking LLM"""
         try:
-            if not self.custom_handler or not self.custom_handler.is_ready:
-                return "Custom model is not ready. Please run training script first."
+            # Initialize custom handler if not already done
+            if not self.custom_handler:
+                logger.info("Initializing custom Banking LLM model...")
+                self.custom_handler = CustomModelHandler()
             
-            # Simple conversion: just use the last user message for now
-            # TODO: Better prompt formatting for custom model
-            last_msg = messages[-1]["content"] if messages else ""
+            # Check if model loaded successfully
+            if not self.custom_handler.is_ready:
+                error_msg = "Custom Banking LLM model not loaded. Check models/best_model.pt exists and is valid."
+                logger.error(error_msg)
+                return f"Error: {error_msg}"
             
+            # Convert messages to prompt
+            # Format: System message + conversation history + current question
+            prompt_parts = []
+            for msg in messages:
+                role = msg.get("role", "user")
+                content = msg.get("content", "")
+                if role == "system":
+                    prompt_parts.append(f"System: {content}")
+                elif role == "user":
+                    prompt_parts.append(f"Customer: {content}")
+                elif role == "assistant":
+                    prompt_parts.append(f"Assistant: {content}")
+            
+            # Add final prompt for assistant to respond
+            prompt_parts.append("Assistant:")
+            full_prompt = "\n".join(prompt_parts)
+            
+            logger.info(f"Generating response with custom model. Prompt length: {len(full_prompt)}")
+            
+            # Generate using YOUR trained model
             generated_text = self.custom_handler.generate(
-                prompt=last_msg,
+                prompt=full_prompt,
                 max_new_tokens=max_tokens,
                 temperature=temperature
             )
             
-            # Track metrics (approximate)
+            # Track metrics
             track_model_inference(
                 model="custom-banking-llm",
-                duration=0.5, # Placeholder
+                duration=0.5,
                 tokens=len(generated_text.split()),
                 cost=0.0
             )
             
-            return generated_text
+            logger.info(f"Custom model generated {len(generated_text)} characters")
+            return generated_text.strip()
             
         except Exception as e:
-            logger.error(f"Custom model generation failed: {e}")
-            return f"Error: {str(e)}"
+            error_msg = f"Custom model generation failed: {str(e)}"
+            logger.error(error_msg, exc_info=True)
+            return f"Error: {error_msg}"
 
     async def generate_stream(
         self,

@@ -503,10 +503,19 @@
     </div>
 
     <script>
-        // Detect API URL (Codespaces or localhost)
-        const API_URL = window.location.hostname.includes('github.dev') 
-            ? window.location.origin.replace('-3000.', '-8000.')
-            : 'http://localhost:8000';
+        // 🚀 AUTO-DETECT API ENDPOINT (Works on localhost, Codespace, and production)
+        const API_URL = (() => {
+            const hostname = window.location.hostname;
+            const protocol = window.location.protocol;
+            
+            // If running on localhost, use port 8000
+            if (hostname === 'localhost' || hostname === '127.0.0.1') {
+                return 'http://localhost:8000';
+            }
+            
+            // If running on Codespace or remote, use current domain
+            return `${protocol}//${window.location.host}`;
+        })();
         
         console.log('Using API URL:', API_URL);
 
@@ -517,10 +526,14 @@
 
         const userName = localStorage.getItem('username') || 'Demo User';
         document.getElementById('userName').textContent = userName;
+        
+        // Store conversation ID for chat continuity
+        let conversationId = localStorage.getItem('conversation_id') || null;
 
         function logout() {
             localStorage.removeItem('authenticated');
             localStorage.removeItem('username');
+            localStorage.removeItem('conversation_id');
             window.location.href = 'index.html';
         }
 
@@ -545,7 +558,7 @@
             try {
                 const token = localStorage.getItem('token');
                 
-                // Call real API with trailing slash and auth
+                // Call real API with conversation context
                 const response = await fetch(`${API_URL}/api/v1/chat/`, {
                     method: 'POST',
                     headers: { 
@@ -554,12 +567,17 @@
                     },
                     body: JSON.stringify({
                         message: message,
-                        customer_id: 'demo_customer_123',
-                        session_id: 'session_' + Date.now()
+                        conversation_id: conversationId
                     })
                 });
 
                 const data = await response.json();
+                
+                // Save conversation ID for continuity
+                if (data.conversation_id) {
+                    conversationId = data.conversation_id;
+                    localStorage.setItem('conversation_id', conversationId);
+                }
                 
                 // Remove typing indicator
                 document.getElementById(typingId).remove();
