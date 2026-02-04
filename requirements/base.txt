@@ -21,19 +21,27 @@ redis==5.0.1
 hiredis==2.3.2
 
 # LLM & ML
-torch==2.2.0
+# CPU-only PyTorch (GPU version installed separately in requirements/gpu.txt)
+# For CPU inference and development in Codespaces
+torch==2.2.0 --index-url https://download.pytorch.org/whl/cpu
 transformers==4.36.2
 accelerate==0.26.1
 peft==0.7.1
-bitsandbytes==0.42.0
+# bitsandbytes removed - GPU quantization not needed for CPU inference
 sentencepiece==0.1.99
 protobuf==4.25.2
 
 # Inference
-# vllm==0.3.0  # Requires CUDA, skip for Mac local development
+# vllm==0.3.0  # Requires CUDA, skip for CPU development
 together==0.2.9
 ollama-python==0.1.2  # For local Ollama integration
 openai==1.10.0  # For OpenAI-compatible APIs
+
+# Cloud Integration
+google-auth==2.26.0
+google-auth-oauthlib==1.2.0
+google-auth-httplib2==0.2.0
+google-api-python-client==2.106.0
 
 # Security & Encryption
 cryptography==41.0.7
@@ -75,6 +83,9 @@ polars==0.19.19
 
 # Monitoring & Logging
 loguru==0.7.2
+
+# Optimization
+onnxruntime==1.16.0  # Faster CPU inference
 
 # Utilities
 python-dotenv==1.0.0
