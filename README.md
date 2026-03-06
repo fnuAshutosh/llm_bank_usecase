@@ -1,4 +1,7 @@
 # Enterprise Banking LLM System
+#### Animated Diagram (Pluggable Model Strategy)
+
+![Pluggable Model Strategy (Animated)](docs/architecture_plan_animated.svg)
 
 > **Production-grade Language Model for Banking Operations**  
 > Reference Architecture for Financial Services | Bank of America Use Case
